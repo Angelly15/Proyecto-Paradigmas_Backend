@@ -1,11 +1,18 @@
 package una.ac.cr.paradigmas.modelo;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import java.io.Serializable;
 import java.util.Date;
-
-public class Mocion {
-
-    private long id;
+@Entity
+public class Mocion implements Serializable {
+    @Id
+    private Long id;
     private String texto;
+    @OneToOne
+    @JoinColumn(name = "tipomocion_id")
     private TipoMocion tipo;
     private Date fecha;
 

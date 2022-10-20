@@ -1,22 +1,27 @@
 package una.ac.cr.paradigmas.modelo;
 
-public class TipoMocion {
-    private String id;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.io.Serializable;
+@Entity
+public class TipoMocion implements Serializable {
+    @Id
+    private Long id;
     private String descripcion;
 
     public TipoMocion() {
     }
 
-    public TipoMocion(String id, String descripcion) {
+    public TipoMocion(Long id, String descripcion) {
         this.id = id;
         this.descripcion = descripcion;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

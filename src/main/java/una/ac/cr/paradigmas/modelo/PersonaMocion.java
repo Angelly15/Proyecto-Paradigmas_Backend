@@ -5,10 +5,7 @@
 package una.ac.cr.paradigmas.modelo;
 
 import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  *
@@ -18,11 +15,15 @@ import javax.persistence.Id;
 public class PersonaMocion implements Serializable {
    @Id
    @GeneratedValue(strategy = GenerationType.AUTO)
-   private long id;
+   private Long id;
+   @OneToOne
+   @JoinColumn(name = "persona_id")
    private Persona persona;
+    @OneToOne
+    @JoinColumn(name = "mocion_id")
    private Mocion mocion;
 
-    public PersonaMocion(long id, Persona persona, Mocion mocion) {
+    public PersonaMocion(Long id, Persona persona, Mocion mocion) {
         this.id = id;
         this.persona = persona;
         this.mocion = mocion;
@@ -31,7 +32,7 @@ public class PersonaMocion implements Serializable {
     public PersonaMocion() {
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -43,7 +44,7 @@ public class PersonaMocion implements Serializable {
         return mocion;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
