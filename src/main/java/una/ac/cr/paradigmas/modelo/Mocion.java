@@ -1,5 +1,7 @@
 package una.ac.cr.paradigmas.modelo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -14,6 +16,8 @@ public class Mocion implements Serializable {
     @OneToOne
     @JoinColumn(name = "tipomocion_id")
     private TipoMocion tipo;
+    @JsonFormat(pattern="yyyy-MM-dd")
+
     private Date fecha;
 
 
