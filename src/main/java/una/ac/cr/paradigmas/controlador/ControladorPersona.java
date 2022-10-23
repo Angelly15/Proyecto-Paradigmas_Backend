@@ -9,7 +9,7 @@ import una.ac.cr.paradigmas.service.PersonaService;
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("/Persona")
 public class ControladorPersona {
 
     @Autowired private PersonaService personaService;
@@ -24,19 +24,31 @@ public class ControladorPersona {
     @CrossOrigin(origins = "*",maxAge=3600)
 
     public  ResponseEntity<Persona> guardar(@RequestBody Persona persona){
-        return ResponseEntity.ok(personaService.guardar(persona));
+        Persona p = personaService.guardar(persona);
+        if (p==null) {
+            ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok(p);
     }
 
     @GetMapping("/{id}")
     @CrossOrigin(origins = "*",maxAge=3600)
     public  ResponseEntity<Persona> buscarporid(@PathVariable("id") Long id){
-        return ResponseEntity.ok(personaService.buscarporid(id));
+        Persona persona = personaService.buscarporid(id);
+        if (persona==null) {
+            ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok(persona);
     }
 
     @DeleteMapping("/{id}")
     @CrossOrigin(origins = "*",maxAge=3600)
     public  ResponseEntity<Persona> borrar(@PathVariable("id") Long id){
-        return ResponseEntity.ok().body(personaService.eliminar(id));
+        Persona persona = personaService.eliminar(id);
+        if (persona==null) {
+            ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok().body(persona);
     }
 
     /*private final LogRepository LR;

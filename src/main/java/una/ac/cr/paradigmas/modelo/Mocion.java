@@ -2,40 +2,37 @@ package una.ac.cr.paradigmas.modelo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 @Entity
 public class Mocion implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String texto;
     @OneToOne
     @JoinColumn(name = "tipomocion_id")
     private TipoMocion tipo;
     @JsonFormat(pattern="yyyy-MM-dd")
-
     private Date fecha;
 
 
     public Mocion() {
     }
 
-    public Mocion(long id, String texto, TipoMocion tipo, Date fecha) {
+    public Mocion(Long id, String texto, TipoMocion tipo, Date fecha) {
         this.id = id;
         this.texto = texto;
         this.tipo = tipo;
         this.fecha = fecha;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

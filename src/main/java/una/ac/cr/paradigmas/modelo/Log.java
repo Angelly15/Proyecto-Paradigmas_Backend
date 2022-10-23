@@ -18,7 +18,7 @@ import javax.persistence.Id;
 @Entity
 public class Log implements Serializable {
 @Id
-@GeneratedValue(strategy = GenerationType.AUTO)
+@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     private String Metodo;
     private LocalDateTime Fecha;           

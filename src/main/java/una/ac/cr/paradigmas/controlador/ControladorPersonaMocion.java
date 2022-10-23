@@ -11,7 +11,7 @@ import una.ac.cr.paradigmas.service.TipoMocionService;
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("/PersonaMocion")
 public class ControladorPersonaMocion {
 
     @Autowired private PersonaMocionService personaMocionService;
@@ -27,19 +27,33 @@ public class ControladorPersonaMocion {
     @CrossOrigin(origins = "*",maxAge=3600)
 
     public  ResponseEntity<PersonaMocion> guardar(@PathVariable("persona") Long persona, @PathVariable ("mocion") Long mocion){
-        return ResponseEntity.ok(personaMocionService.guardar(persona , mocion));
+        PersonaMocion pm = personaMocionService.guardar(persona, mocion);
+        if (pm==null) {
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok(pm);
     }
 
     @GetMapping("/{id}")
     @CrossOrigin(origins = "*",maxAge=3600)
     public  ResponseEntity<PersonaMocion> buscarporid(@PathVariable("id") Long id){
-        return ResponseEntity.ok(personaMocionService.buscarporid(id));
+        PersonaMocion personaMocion = personaMocionService.buscarporid(id);
+        if (personaMocion==null) {
+            return ResponseEntity.badRequest().build();
+
+        }
+        return ResponseEntity.ok(personaMocion);
     }
 
     @DeleteMapping("/{id}")
     @CrossOrigin(origins = "*",maxAge=3600)
     public  ResponseEntity<PersonaMocion> borrar(@PathVariable("id") Long id){
-        return ResponseEntity.ok().body(personaMocionService.eliminar(id));
+        PersonaMocion personaMocion = personaMocionService.eliminar(id);
+        if (personaMocion==null) {
+            return ResponseEntity.badRequest().build();
+
+        }
+        return ResponseEntity.ok().body(personaMocion);
     }
 
     /*private final LogRepository LR;

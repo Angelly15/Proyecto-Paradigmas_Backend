@@ -35,7 +35,7 @@ public class PersonaService {
     }
     public Persona buscarporid(Long id){
         Persona persona=repositorio.findById(id).orElse(null);
-        if(persona.equals(null)){
+        if(!repositorio.findById(id).isPresent()){
             return null;
         }
         return persona;
@@ -43,7 +43,7 @@ public class PersonaService {
     
     public Persona eliminar(Long id){
         Persona persona=repositorio.findById(id).orElse(null);
-        if(persona.equals(null)){
+        if(persona==null){
             return null;
         }
         repositorio.delete(persona);

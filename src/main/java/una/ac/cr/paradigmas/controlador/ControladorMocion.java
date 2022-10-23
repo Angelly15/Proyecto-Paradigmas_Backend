@@ -10,7 +10,7 @@ import una.ac.cr.paradigmas.service.MocionService;
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("/Mocion")
 public class ControladorMocion {
 
     @Autowired private MocionService mocionService;
@@ -26,31 +26,42 @@ public class ControladorMocion {
     @CrossOrigin(origins = "*",maxAge=3600)
 
     public  ResponseEntity<Mocion> guardar(@RequestBody Mocion mocion){
-        return ResponseEntity.ok(mocionService.guardar(mocion));
+        Mocion m= mocionService.guardar(mocion);
+        if (m==null) {
+            return  ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok(m);
     }
 
     @GetMapping("/{id}")
     @CrossOrigin(origins = "*",maxAge=3600)
     public  ResponseEntity<Mocion> buscarporid(@PathVariable("id") Long id){
-        return ResponseEntity.ok(mocionService.buscarporid(id));
+        Mocion mocion = mocionService.buscarporid(id);
+        if (mocion==null) {
+            return  ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok(mocion);
     }
 
     @DeleteMapping("/{id}")
     @CrossOrigin(origins = "*",maxAge=3600)
     public  ResponseEntity<Mocion> borrar(@PathVariable("id") Long id){
-        return ResponseEntity.ok().body(mocionService.eliminar(id));
+        Mocion mocion = mocionService.eliminar(id);
+        if (mocion==null) {
+            return  ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok().body(mocion);
     }
-
-    /*private final LogRepository LR;
-
-    @GetMapping("/Log")
+    @PutMapping("/{id}")
     @CrossOrigin(origins = "*",maxAge=3600)
-    public  ResponseEntity<List<Log>> listarLog(){
-        List<Log> lista = new ArrayList<Log>();
-        LR.findAll().forEach(log -> lista.add(log));
-        return ResponseEntity.ok(lista);
+    public  ResponseEntity<Mocion> anadirTipo(@PathVariable("id") Long id, @RequestBody Mocion m){
+        Mocion mocion =  mocionService.anadirTipo(id, m);
+        if (mocion==null) {
+            return  ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok().body(mocion);
     }
-    */
+
 
 
 }
