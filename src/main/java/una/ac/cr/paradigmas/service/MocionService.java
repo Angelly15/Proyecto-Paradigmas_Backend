@@ -16,6 +16,7 @@ public class MocionService  {
 
 @Autowired
     private MocionRepository Mocionrepository;
+@Autowired private TipoMocionRepository tipoMocionRepository;
 @Autowired private TipoMocionService tipoMocionService;
     public List<Mocion> listar(){
         List<Mocion> lista=new ArrayList();
@@ -26,14 +27,19 @@ public class MocionService  {
         return lista;
     }
 
-    public Mocion guardar(Mocion mocion){
+    public Mocion guardar(Mocion mocion,Long id){
+        TipoMocion tipo = tipoMocionRepository.findById(id).orElse(null);
+        if (tipo == null) {
+            return null;
+        }
+        mocion.setTipo(tipo);
         return Mocionrepository.save(mocion);
     }
     public Mocion buscarporid(Long id){
-        if(!Mocionrepository.findById(id).isPresent()){
+        Mocion mocion=Mocionrepository.findById(id).orElse(null);
+        if(mocion == null){
             return null;
         }
-        Mocion mocion=Mocionrepository.findById(id).orElse(null);
         return mocion;
 
     }
@@ -49,11 +55,12 @@ public class MocionService  {
     public Mocion anadirTipo(Long iditpo, Mocion mocion){
         TipoMocion tipoMocion = tipoMocionService.buscarporid(iditpo);
         mocion = buscarporid(mocion.getId());
+        System.out.println(mocion);
         if (tipoMocion==null|| mocion==null) {
             return null;
         }
         mocion.setTipo(tipoMocion);
-        return guardar(mocion);
+        return Mocionrepository.save(mocion) ;
     }
 }
 

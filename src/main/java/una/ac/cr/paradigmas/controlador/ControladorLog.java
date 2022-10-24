@@ -10,6 +10,7 @@ import una.ac.cr.paradigmas.modelo.Log;
 import una.ac.cr.paradigmas.repositorio.LogRepositorio;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 @RestController @RequestMapping("/Log")
 public class ControladorLog {
@@ -18,11 +19,11 @@ public class ControladorLog {
 
     @GetMapping()
     @CrossOrigin(origins = "*",maxAge=3600)
-    public  ResponseEntity<List<Log>> listarLog(){
-        List<Log> lista = new ArrayList<Log>();
-        LR.findAll().forEach(log -> lista.add(log));
-        return ResponseEntity.ok(lista);
-    }
+    public  ResponseEntity<Collection<Log>> listarLog(){
+        Collection<Log> lista = LR.findAll();
 
+        System.out.println(lista);
+        return ResponseEntity.ok().body(lista);
+    }
 
 }

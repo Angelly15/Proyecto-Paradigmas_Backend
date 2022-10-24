@@ -29,7 +29,8 @@ public class TipoMocionService {
     }
     public TipoMocion buscarporid(Long id){
         TipoMocion mocion=tipomocionrepository.findById(id).orElse(null);
-        if(mocion.equals(null)){
+        System.out.println(mocion);
+        if(mocion ==null){
             return null;
         }
         return mocion;
@@ -37,7 +38,7 @@ public class TipoMocionService {
 
     public TipoMocion eliminar(Long id){
         TipoMocion mocion=tipomocionrepository.findById(id).orElse(null);
-        if(mocion.equals(null)){
+        if(mocion==null){
             return null;
         }
         tipomocionrepository.delete(mocion);

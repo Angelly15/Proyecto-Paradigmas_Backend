@@ -30,7 +30,7 @@ public class PersonaMocionService {
 
     public PersonaMocion eliminar(Long id){
         PersonaMocion personaMocion=personaMocionRepository.findById(id).orElse(null);
-        if(personaMocion.equals(null)){
+        if(personaMocion ==null){
             return null;
         }
         personaMocionRepository.delete(personaMocion);
@@ -40,7 +40,7 @@ public class PersonaMocionService {
 
     public PersonaMocion buscarporid(Long id){
         PersonaMocion personaMocion=personaMocionRepository.findById(id).orElse(null);
-        if(personaMocion.equals(null)){
+        if(personaMocion==null){
             return null;
         }
         return personaMocion;
@@ -49,18 +49,15 @@ public class PersonaMocionService {
     public  PersonaMocion guardar(Long persona, Long mocion){
         Persona pp = personaService.buscarporid(persona);
         Mocion mn = mocionService.buscarporid(mocion);
-        if(pp.equals(null)&&mn.equals(null)){
+        System.out.println(pp);
+        System.out.println(mn);
+        if(pp==null||mn==null){
             return null;
         }
         List<PersonaMocion> nombre = listarpersona(persona);
         List<PersonaMocion> nom = listarmocion(mocion);
 
-        personaMocionRepository.findAll().forEach(personaMocion -> {
-            if(mocion.equals(personaMocion.getMocion().getId())){
-                nombre.add(personaMocion);
-            }
 
-        });
         String pattern = "yyyy-MM-dd";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         List<PersonaMocion> pm = new ArrayList<>();
@@ -72,15 +69,14 @@ public class PersonaMocionService {
             }
 
         }
-            if(nom.size()<3 || pm.size()<5){
+        System.out.println(nom.size());
+        System.out.println(pm.size());
+            if(nom.size()>=3 || pm.size()>=5){
             return null;
         }
 
 
-        if(persona.equals(null)&&mocion.equals(null)){
-            return null;
 
-        }
         return  personaMocionRepository.save(new PersonaMocion(null,pp, mn));
 
 

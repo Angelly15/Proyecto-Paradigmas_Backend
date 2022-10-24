@@ -22,11 +22,11 @@ public class ControladorMocion {
         return ResponseEntity.ok().body(mocionService.listar());
     }
 
-    @PostMapping()
+    @PostMapping("/{id}")
     @CrossOrigin(origins = "*",maxAge=3600)
 
-    public  ResponseEntity<Mocion> guardar(@RequestBody Mocion mocion){
-        Mocion m= mocionService.guardar(mocion);
+    public  ResponseEntity<Mocion> guardar(@RequestBody Mocion mocion,@PathVariable("id") Long id){
+        Mocion m= mocionService.guardar(mocion,id);
         if (m==null) {
             return  ResponseEntity.badRequest().build();
         }

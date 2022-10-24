@@ -25,18 +25,18 @@ public class ParadigmasApplication {
 	@Bean
 	CommandLineRunner run (MocionService ms, PersonaService ps, PersonaMocionService pms, TipoMocionService ts ){
 		return args -> {
-			ms.guardar(new Mocion(null, "hola", null, simpleDateFormat.parse("2022-10-22")));
-			ms.guardar(new Mocion(null, "mundo", null, simpleDateFormat.parse("2022-11-10")));
-			ms.guardar(new Mocion(null, "adios", null, simpleDateFormat.parse("2022-01-12")));
+			ts.guardar(new TipoMocion(null, "tipo1"));
+			ts.guardar(new TipoMocion(null, "tipo2"));
+			ts.guardar(new TipoMocion(null, "tipo3"));
+
+			ms.guardar(new Mocion(null, "hola", null, simpleDateFormat.parse("2022-10-22")),Long.parseLong("1"));
+			ms.guardar(new Mocion(null, "mundo", null, simpleDateFormat.parse("2022-11-10")), Long.parseLong("2"));
+			ms.guardar(new Mocion(null, "adios", null, simpleDateFormat.parse("2022-01-12")), Long.parseLong("3"));
 
 			ps.guardar(new Persona(1, "118280201", "jack"));
 			ps.guardar(new Persona(2, "202020202", "juan"));
 			ps.guardar(new Persona(3, "101010101", "pancho"));
 
-
-			ts.guardar(new TipoMocion(null, "tipo1"));
-			ts.guardar(new TipoMocion(null, "tipo2"));
-			ts.guardar(new TipoMocion(null, "tipo3"));
 
 
 
