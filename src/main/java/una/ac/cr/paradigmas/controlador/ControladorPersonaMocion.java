@@ -56,16 +56,7 @@ public class ControladorPersonaMocion {
         return ResponseEntity.ok().body(personaMocion);
     }
 
-    /*private final LogRepository LR;
 
-    @GetMapping("/Log")
-    @CrossOrigin(origins = "*",maxAge=3600)
-    public  ResponseEntity<List<Log>> listarLog(){
-        List<Log> lista = new ArrayList<Log>();
-        LR.findAll().forEach(log -> lista.add(log));
-        return ResponseEntity.ok(lista);
-    }
-    */
 
 
 }
