@@ -3,9 +3,12 @@ package una.ac.cr.paradigmas.controlador;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import una.ac.cr.paradigmas.modelo.Log;
 import una.ac.cr.paradigmas.modelo.Persona;
+import una.ac.cr.paradigmas.repositorio.LogRepositorio;
 import una.ac.cr.paradigmas.service.PersonaService;
 
+import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -61,6 +64,7 @@ public class ControladorPersona {
         return ResponseEntity.ok(lista);
     }
     */
+
 
 
 }

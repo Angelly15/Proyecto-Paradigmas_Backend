@@ -12,7 +12,9 @@ import una.ac.cr.paradigmas.repositorio.LogRepositorio;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-@RestController @RequestMapping("/Log")
+@RestController
+@RequestMapping("/Log")
+
 public class ControladorLog {
     @Autowired
     private LogRepositorio LR;
@@ -23,7 +25,7 @@ public class ControladorLog {
         Collection<Log> lista = LR.findAll();
 
         System.out.println(lista);
-        return ResponseEntity.ok().body(lista);
+        return ResponseEntity.ok(lista);
     }
 
 }
