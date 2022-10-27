@@ -12,46 +12,23 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-/**
- *
- * @author Angelly Cortes
- */
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Log implements Serializable {
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String metodo;
-    @JsonFormat(pattern="yyyy-MM-dd")
-    private Date fecha;
 
-    public Log() {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    }
+	private String metodo;
 
-    public void setMetodo(String name) {
-      metodo=name;
-    }
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private Date fecha;
 
-    public void setFecha(Date now) {
-        fecha=now;
-    }
-
-    public Log(Long id, String metodo, Date fecha) {
-        id = id;
-        metodo = metodo;
-        fecha = fecha;
-    }
-
-
-    @Override
-    public String toString() {
-        return "Log{" +
-                "Id=" + id +
-                ", Metodo='" + metodo + '\'' +
-                ", Fecha=" + fecha +
-                '}';
-    }
 }
-

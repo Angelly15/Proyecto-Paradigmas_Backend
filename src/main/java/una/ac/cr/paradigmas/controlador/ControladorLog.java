@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import una.ac.cr.paradigmas.modelo.Log;
 import una.ac.cr.paradigmas.repositorio.LogRepositorio;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import una.ac.cr.paradigmas.modelo.Log;
 @RestController
 @RequestMapping("/Log")
 
@@ -19,7 +19,7 @@ public class ControladorLog {
     @Autowired
     private LogRepositorio LR;
 
-    @GetMapping()
+    @GetMapping
     @CrossOrigin(origins = "*",maxAge=3600)
     public  ResponseEntity<Collection<Log>> listarLog(){
         Collection<Log> lista = LR.findAll();
